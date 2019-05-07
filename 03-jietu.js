@@ -1,7 +1,9 @@
 const puppeteer = require('puppeteer');
 const utils = require('./utils/base');
 const start = async (utils) => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
   const page = await browser.newPage();
   await page.goto('http://127.0.0.1:3000');
 
