@@ -1,4 +1,6 @@
 *.mobi
 *.epub
+package-lock.json
+*.lock
 book/
 node_modules/
