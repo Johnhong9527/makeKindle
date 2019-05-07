@@ -1,3 +1,4 @@
 *.mobi
 *.epub
 book/
+node_modules/
