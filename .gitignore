@@ -1,5 +1,5 @@
-#*.mobi
-#*.epub
+*.mobi
+*.epub
 package-lock.json
 *.lock
 book/
