@@ -11,14 +11,14 @@ const fs = require("fs");
   //生成Page对象
   //const page = await browser.newPage();//官网写法：一打开浏览器会打开两个tab，第二个才是你正在操作的tab
   const page = (await browser.pages())[0]; //这是我的写法，只有一个tab
-  await page.goto('http://www.bidutuijian.com/books/weiweiyixiao/000.html'); //跳转到掘金
+  await page.goto('https://www.qu.la/book/27473/'); //跳转到掘金
 
   //请开始你的表演...
   const result = await page.evaluate(() => {
 
     return new Promise(resolve => {
       // let $titles = document.querySelector('.cell-items').getElementsByTagName('li');
-      let $titles = document.getElementsByTagName('td');
+      let $titles = document.getElementsByTagName('dd');
       let titles = [];
       let index = 0;
       const len = $titles.length;
@@ -30,7 +30,7 @@ const fs = require("fs");
         }
         console.log($titles[index]);
         titles.push({
-          href: `http://www.bidutuijian.com/books/weiweiyixiao/${$titles[index].getElementsByTagName('a')[0].getAttribute('href')}`,
+          href: `https://www.qu.la${$titles[index].getElementsByTagName('a')[0].getAttribute('href')}`,
           title: $titles[index].getElementsByTagName('a')[0].innerText,
           index: index + 1
         });
