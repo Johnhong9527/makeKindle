@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require("fs");
 (async () => {
   const browser = await puppeteer.launch({
-    executablePath: './chromium/chrome.exe',
+    // executablePath: './chromium/chrome.exe',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     headless: true, //默认为true（无头），不显示浏览器界面
     slowMo: 200, //减速显示，有时会作为模拟人操作特意减速
