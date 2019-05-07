@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      @font-face {
+        font-family: 'pglh';
+        src: url(./fonts/汉仪全唐诗简.ttf);
+      }
+      #page {
+        width: 800px;
+        height: 1280px;
+        font-size: 30px;
+        text-align: center;
+        position: relative;
+      }
+      #page > div {
+        position: absolute;
+        left: 0;
+        right: 0;
+        font-family: 'pglh';
+        text-shadow: 2px 2px 3px #4f4f4f;
+        color: white;
+      }
+      #title {
+        top: 20%;
+        font-size: 80px;
+      }
+      #author {
+        bottom: 20%;
+        text-align: right;
+        padding-right: 30px;
+        font-size: 55px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 免费大图 http://tu.763g.com/bizhi/ -->
+    <div id="page">
+      <div id="title">这是一张封面</div>
+      <div id="author">作者</div>
+    </div>
+    <script>
+      const $page = document.getElementById('page');
+      $page.style.backgroundImage = `url('image/${Math.round(Math.random() * 10)}.jpg')`;
+      $page.style.backgroundPosition = 'center';
+      $page.style.backgroundSize = 'cover';
+      $page.style.backgroundRepeat = 'no-repeat';
+    </script>
+  </body>
+</html>
