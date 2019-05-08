@@ -13,7 +13,7 @@ function mkdir(path) {
 	}
 }
 
-shell.exec('rm -rf book && mkdir book');
+// shell.exec('rm -rf book && mkdir book');
 
 mkdir('./book/META-INF');
 

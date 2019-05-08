@@ -156,8 +156,8 @@ ${page(content.page)}
       resolve(html);
     });
   },
-  name: '微微一笑很倾城',
-  author: '顾漫',
+  name: '末世之全能大师',
+  author: '秦小词',
   uid: '',
   time: ''
 };

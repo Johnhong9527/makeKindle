@@ -1,9 +1,10 @@
 const fs = require("fs");
 const puppeteer = require('puppeteer');
+const shell = require('shelljs');
 const utils = require('./utils/base');
 var $xindaming = require('./xindaming');
 const len = $xindaming.length;
-let index = 0;
+let index = 1019;
 
 const createPage = async (url) => {
   const browser = await puppeteer.launch({
@@ -17,7 +18,7 @@ const createPage = async (url) => {
     return new Promise(resolve => {
       let content = {
         title: document.getElementsByTagName('h1')[0].innerText,
-        page: document.getElementsByClassName('main1')[1].getElementsByTagName('p')[0].innerText
+        page: document.getElementById('content').innerText
       };
       resolve(content);
     });
@@ -38,7 +39,14 @@ function forEachUrl() {
       setTimeout(() => {
         index += 1;
         forEachUrl();
-      }, 200);
+      }, 30);
     });
+  } else {
+    shell.exec(`zip -p -r ${utils.name}.epub book`);
+    // linux 下执行命令
+    // shell.exec(`./utils/kindlegen -c1 ${utils.name}.epub -locale zh`);
+    // mac下执行命令
+    shell.exec(`/Users/honghaitao/Applications/KindleGen_Mac_i386_v2_9/kindlegen -c1 ${utils.name}.epub -locale zh`);
+    // shell.exec(`rm ${utils.name}.epub`);
   }
 }

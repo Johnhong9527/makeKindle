@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const fs = require("fs");
+const shell = require('shelljs');
 (async () => {
   const browser = await puppeteer.launch({
     // executablePath: './chromium/chrome.exe',
@@ -24,6 +25,10 @@ const fs = require("fs");
       const len = $titles.length;
       const interval = setInterval(() => {
         if (index === len) {
+          titles = titles.splice(12, len);
+          titles.map((key, i) => {
+            key.index = i + 1;
+          });
           resolve(titles);
           clearInterval(interval);
           return;
@@ -43,4 +48,7 @@ const fs = require("fs");
   await browser.close(); //关闭浏览器
   console.log('over');
   fs.writeFileSync('./xindaming.js', 'module.exports =' + JSON.stringify(result));
+  // 执行其他命令
+  shell.exec('node 02-other.js');
+  shell.exec('node 03-jietu.js');
 })();
