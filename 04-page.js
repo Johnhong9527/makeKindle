@@ -8,7 +8,7 @@ let index = 1019;
 
 const createPage = async (url) => {
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox'], // 沙箱模式下运行
     headless: true, //默认为true（无头），不显示浏览器界面
     // slowMo: 200,
   });

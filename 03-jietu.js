@@ -15,7 +15,7 @@ const utils = require('./utils/base');
 
 const start = async (utils) => {
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox'], // 沙箱模式下运行
   });
   const page = await browser.newPage();
   await page.goto('http://localhost:3000/');
