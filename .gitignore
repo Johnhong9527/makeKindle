@@ -2,5 +2,6 @@
 *.epub
 package-lock.json
 *.lock
+.idea/
 book/
 node_modules/

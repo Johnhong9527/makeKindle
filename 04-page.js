@@ -2,15 +2,16 @@ const fs = require("fs");
 const puppeteer = require('puppeteer');
 const shell = require('shelljs');
 const utils = require('./utils/base');
-var $xindaming = require('./xindaming');
-const len = $xindaming.length;
-let index = 1019;
+const config = require('./utils/config');
+var _list = require('./utils/list');
+const len = _list.length;
+let index = 735;
 
 const createPage = async (url) => {
   const browser = await puppeteer.launch({
     args: ['--no-sandbox', '--disable-setuid-sandbox'], // 沙箱模式下运行
-    headless: true, //默认为true（无头），不显示浏览器界面
-    // slowMo: 200,
+    // headless: false, //默认为true（无头），不显示浏览器界面
+    slowMo: 200,
   });
   const page = (await browser.pages())[0]; //这是我的写法，只有一个tab
   await page.goto(url); //跳转到掘金
@@ -29,24 +30,24 @@ const createPage = async (url) => {
 forEachUrl();
 
 function forEachUrl() {
-  if ($xindaming[index] !== undefined) {
+  if (_list[index] !== undefined) {
     console.clear();
-    console.log(`还剩${len - index};  当前进度:${$xindaming[index].index}  ${$xindaming[index].title}`);
-    createPage($xindaming[index].href).then(res => {
-      return utils.page($xindaming[index], res);
+    console.log(`还剩${len - index};  当前进度:${_list[index].index}  ${_list[index].title}`);
+    createPage(_list[index].href).then(res => {
+      return utils.page(_list[index], res);
     }).then(res => {
-      fs.writeFileSync('./book/OEBPS/Text/text' + $xindaming[index].index + '.xhtml', res);
+      fs.writeFileSync('./book/OEBPS/Text/text' + _list[index].index + '.xhtml', res);
       setTimeout(() => {
         index += 1;
         forEachUrl();
-      }, 30);
+      }, 200);
     });
   } else {
-    shell.exec(`zip -p -r ${utils.name}.epub book`);
+    shell.exec(`zip -p -r ${config.name}.epub book`);
     // linux 下执行命令
     // shell.exec(`./utils/kindlegen -c1 ${utils.name}.epub -locale zh`);
     // mac下执行命令
-    shell.exec(`/Users/honghaitao/Applications/KindleGen_Mac_i386_v2_9/kindlegen -c1 ${utils.name}.epub -locale zh`);
+    shell.exec(`/Users/honghaitao/Applications/KindleGen_Mac_i386_v2_9/kindlegen -c1 ${config.name}.epub -locale zh`);
     // shell.exec(`rm ${utils.name}.epub`);
   }
 }
