@@ -1,8 +1,8 @@
 module.exports = {
-  name: '天影',
-  author: '萧鼎',
+  name: '小村春色',
+  author: '猎枪',
   uid: '',
   time: '',
-  url: 'https://www.qu.la/book/20616/',
-  href: 'https://www.qu.la'
+  url: 'http://www.bmaoxs.com/read.asp?id=11332',
+  href: 'http://www.bmaoxs.com'
 };

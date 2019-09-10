@@ -6,3 +6,4 @@ package-lock.json
 .DS_Store/
 book/
 node_modules/
+.DS_Store
