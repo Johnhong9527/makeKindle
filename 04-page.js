@@ -5,12 +5,12 @@ const utils = require('./utils/base');
 const config = require('./utils/config');
 var _list = require('./utils/list');
 const len = _list.length;
-let index = 104;
+let index = config.index;
 // 开启代理
-shell.exec('export https_proxy=http://127.0.0.1:7890;export http_proxy=http://127.0.0.1:7890;export all_proxy=socks5://127.0.0.1:1080');
+// shell.exec('export https_proxy=http://127.0.0.1:7890;export http_proxy=http://127.0.0.1:7890;export all_proxy=socks5://127.0.0.1:1080');
 const createPage = async url => {
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'] // 沙箱模式下运行
+    // args: ['--no-sandbox', '--disable-setuid-sandbox'] // 沙箱模式下运行
     // headless: false //默认为true（无头），不显示浏览器界面
     // slowMo: 200
   });
@@ -18,10 +18,10 @@ const createPage = async url => {
   await page.goto(url); //跳转到掘金
   const result = await page.evaluate(() => {
     return new Promise(resolve => {
-      console.log(document.getElementsByTagName('strong')[0])
+      // console.log(document.getElementsByTagName('h1')[0])
       let content = {
-        title: document.getElementsByTagName('strong')[0].innerText,
-        page: document.getElementsByClassName('content')[0].innerText
+        title: document.getElementsByTagName('h1')[0].innerText,
+        page: document.getElementById('content').innerText
       };
       resolve(content);
     });

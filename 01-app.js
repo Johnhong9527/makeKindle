@@ -7,8 +7,8 @@ shell.exec('export https_proxy=http://127.0.0.1:7890;export http_proxy=http://12
 (async () => {
   const browser = await puppeteer.launch({
     // executablePath: './chromium/chrome.exe',
-    // args: ['--no-sandbox', '--disable-setuid-sandbox'],  // 沙箱模式下运行
-    headless: false, //默认为true（无头），不显示浏览器界面
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],  // 沙箱模式下运行
+    // headless: false, //默认为true（无头），不显示浏览器界面
     // slowMo: 200, //减速显示，有时会作为模拟人操作特意减速
     // devtools: true //显示开发者工具。页面宽高默认800*600,把开发者工具显示再隐藏页面会占满屏幕，有没有大佬解释下？
   });
@@ -16,7 +16,7 @@ shell.exec('export https_proxy=http://127.0.0.1:7890;export http_proxy=http://12
   //const page = await browser.newPage();//官网写法：一打开浏览器会打开两个tab，第二个才是你正在操作的tab
   const page = (await browser.pages())[0]; //这是我的写法，只有一个tab
   // await page.goto(config.url); //跳转到掘金
-  await page.goto('http://www.bmaoxs.com/read.asp?id=35752'); //跳转到掘金
+  await page.goto(config.url); //跳转到掘金
 
   //请开始你的表演...
   const result = await page.evaluate((config) => {
@@ -38,7 +38,7 @@ shell.exec('export https_proxy=http://127.0.0.1:7890;export http_proxy=http://12
         let _td = _tr[l].getElementsByTagName('td');
         for (let j = 0; j < 2; j++) {
           for (let i = 0; i < _td.length; i++) {
-            if (index < 112) {
+            if (index < 194) {
               let _div = _td[i].getElementsByTagName('div')[j];
               let _title = _div.innerText;
               let _url = _div.getElementsByTagName('a')[0].getAttribute('href');
