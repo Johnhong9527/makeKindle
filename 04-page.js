@@ -20,8 +20,8 @@ const createPage = async url => {
     return new Promise(resolve => {
       // console.log(document.getElementsByTagName('h1')[0])
       let content = {
-        title: document.getElementsByTagName('h1')[0].innerText,
-        page: document.getElementById('content').innerText
+        title: document.getElementsByClassName('panel-heading')[0].innerText,
+        page: document.getElementsByClassName('content-body')[0].innerText
       };
       resolve(content);
     });
